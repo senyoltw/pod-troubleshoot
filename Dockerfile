@@ -1,7 +1,6 @@
 FROM registry.hub.docker.com/library/alpine:3.11.5
 
 ARG pip_installer="https://bootstrap.pypa.io/get-pip.py"
-ARG awscli_version="1.16.76"
 
 RUN apk update --no-cache && \
     apk upgrade --no-cache && \
@@ -9,7 +8,7 @@ RUN apk update --no-cache && \
     rm -fr /var/cache/apk/*
 
 RUN curl ${pip_installer} | python && \
-    pip install awscli==${awscli_version}
+    pip install awscli
 
 ENTRYPOINT ["sh", "-c"]
 CMD ["while true; do date; sleep 3; done"]
